@@ -28,7 +28,8 @@ public class BrowserActivity extends AppCompatActivity implements
     PagerFragment pagerFragment;
 
     ArrayList<PageViewerFragment> pages;
-    ArrayList<String> bookmarks;
+    ArrayList<String> bookmarks = new ArrayList<String>();
+    ArrayList<String> markTitle = new ArrayList<String>();;
 
     boolean listMode;
 
@@ -180,16 +181,27 @@ public class BrowserActivity extends AppCompatActivity implements
 
     @Override
     public void savePage() {
-        String string = pagerFragment.getCurrentUrl();
-        bookmarks.add(string);
-        Toast toast = Toast.makeText(BrowserActivity.this, "URL added to bookmark", Toast.LENGTH_LONG);
-        toast.show();
+        if(pagerFragment.size() != 0)
+        {
+            String url = pagerFragment.getCurrentUrl();
+            String title = pagerFragment.getCurrentTitle();
+            bookmarks.add(url);
+            markTitle.add(title);
+            Toast toast = Toast.makeText(BrowserActivity.this, "URL added to bookmark", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else
+        {
+            Toast toast = Toast.makeText(BrowserActivity.this, "Unable to add bookmark", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     @Override
     public void launchBookmark() {
         Intent intent = new Intent(this, BookmarkActivity.class);
         intent.putExtra("Bookmarks", bookmarks);
+        intent.putExtra("Title", markTitle);
         startActivity(intent);
     }
 }

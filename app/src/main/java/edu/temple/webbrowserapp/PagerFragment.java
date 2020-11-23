@@ -133,6 +133,10 @@ public class PagerFragment extends Fragment {
     public String getCurrentTitle() {
         return getPageViewer(viewPager.getCurrentItem()).getTitle();
     }
+    public int size()
+    {
+        return pages.size();
+    }
 
     private PageViewerFragment getPageViewer(int position) {
         return (PageViewerFragment) ((FragmentStatePagerAdapter) viewPager.getAdapter()).getItem(position);

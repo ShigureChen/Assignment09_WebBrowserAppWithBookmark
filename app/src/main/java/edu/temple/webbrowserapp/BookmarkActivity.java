@@ -3,6 +3,7 @@ package edu.temple.webbrowserapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -13,7 +14,9 @@ import java.util.ArrayList;
 public class BookmarkActivity extends AppCompatActivity {
 
     ArrayList<String> bookmarks;
-    ArrayAdapter<String> adapter;
+    ArrayList<String> markTitle;
+    CustomAdapter adapter;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +24,13 @@ public class BookmarkActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         bookmarks = intent.getStringArrayListExtra("Bookmarks");
+        markTitle = intent.getStringArrayListExtra("Title");
+
         if(bookmarks != null)
         {
-            ListView listView = findViewById(R.id.listView);
-            adapter = new ArrayAdapter<String>(this, bookmarks);
+            ListView listView = (ListView)findViewById(R.id.listView);
+            adapter = new CustomAdapter(context, markTitle);
             listView.setAdapter(adapter);
-
         }
 
         else
