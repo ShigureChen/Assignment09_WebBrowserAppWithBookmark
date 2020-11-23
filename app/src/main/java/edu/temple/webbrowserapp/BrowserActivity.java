@@ -200,8 +200,11 @@ public class BrowserActivity extends AppCompatActivity implements
     @Override
     public void launchBookmark() {
         Intent intent = new Intent(this, BookmarkActivity.class);
-        intent.putExtra("Bookmarks", bookmarks);
-        intent.putExtra("Title", markTitle);
+        if(bookmarks.size() != 0 && markTitle.size() != 0)
+        {
+            intent.putExtra("Bookmarks", bookmarks);
+            intent.putExtra("Title", markTitle);
+        }
         startActivity(intent);
     }
 }
