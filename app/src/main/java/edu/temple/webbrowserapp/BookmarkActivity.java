@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -25,6 +27,13 @@ public class BookmarkActivity extends AppCompatActivity {
         Intent intent = getIntent();
         bookmarks = intent.getStringArrayListExtra("Bookmarks");
         markTitle = intent.getStringArrayListExtra("Title");
+        Button close = findViewById(R.id.closeButton);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         if(bookmarks != null)
         {
