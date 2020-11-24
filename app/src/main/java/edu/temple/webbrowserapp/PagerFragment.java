@@ -104,33 +104,41 @@ public class PagerFragment extends Fragment implements Serializable {
         return l;
     }
 
-    public void notifyWebsitesChanged() {
+    public void notifyWebsitesChanged()
+    {
         viewPager.getAdapter().notifyDataSetChanged();
     }
 
-    public void showPage(int index) {
+    public void showPage(int index)
+    {
         viewPager.setCurrentItem(index);
     }
 
-    public void go(String url) {
+    public void go(String url)
+    {
         getPageViewer(viewPager.getCurrentItem()).go(url);
     }
 
-    public void back() {
+    public void back()
+    {
         getPageViewer(viewPager.getCurrentItem()).back();
     }
 
-    public void forward() {
+    public void forward()
+    {
         getPageViewer(viewPager.getCurrentItem()).forward();
     }
 
-    public String getCurrentUrl() {
+    public String getCurrentUrl()
+    {
         return getPageViewer(viewPager.getCurrentItem()).getUrl();
     }
 
-    public String getCurrentTitle() {
+    public String getCurrentTitle()
+    {
         return getPageViewer(viewPager.getCurrentItem()).getTitle();
     }
+
     public int size()
     {
         return pages.size();

@@ -65,8 +65,9 @@ public class BookmarkActivity extends AppCompatActivity implements Serializable 
     public void launchNewBookMark(String url)
     {
         Intent intent = new Intent(this, BookmarkActivity.class);
-
-        startActivity(intent);
+        intent.putExtra("URL_TO_OPEN", url);
+        setResult(Activity.RESULT_CANCELED, intent);
+        finish();
     }
 
     @Override

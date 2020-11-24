@@ -156,7 +156,10 @@ public class BrowserActivity extends AppCompatActivity implements
             }
             if (resultCode == Activity.RESULT_CANCELED)
             {
-                //Write your code if there's no result
+                String url = new String();
+                url = data.getStringExtra("URL_TO_OPEN");
+                newPage();
+                pagerFragment.go(url);
             }
         }
     }
