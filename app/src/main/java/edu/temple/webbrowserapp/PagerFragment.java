@@ -12,16 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PagerFragment extends Fragment {
+public class PagerFragment extends Fragment implements Serializable {
 
     private PagerInterface browserActivity;
-
-    private ViewPager viewPager;
-
+    transient ViewPager viewPager;
     private ArrayList<PageViewerFragment> pages;
-
     private static final String PAGES_KEY = "pages";
 
     public PagerFragment() {}

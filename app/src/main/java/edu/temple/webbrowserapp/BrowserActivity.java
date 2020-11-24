@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class BrowserActivity extends AppCompatActivity implements
@@ -16,9 +17,11 @@ public class BrowserActivity extends AppCompatActivity implements
         PageViewerFragment.PageViewerInterface,
         BrowserControlFragment.BrowserControlInterface,
         PagerFragment.PagerInterface,
-        PageListFragment.PageListInterface {
+        PageListFragment.PageListInterface,
+        Serializable
+{
 
-    FragmentManager fm;
+    transient FragmentManager fm;
 
     private final String PAGES_KEY = "pages";
 

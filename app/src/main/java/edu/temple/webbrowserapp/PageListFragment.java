@@ -13,9 +13,10 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PageListFragment extends Fragment {
+public class PageListFragment extends Fragment implements Serializable {
 
     private PageListInterface browserActivity;
 

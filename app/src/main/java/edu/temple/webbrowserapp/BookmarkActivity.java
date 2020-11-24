@@ -3,18 +3,17 @@ package edu.temple.webbrowserapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BookmarkActivity extends AppCompatActivity {
+public class BookmarkActivity extends AppCompatActivity implements Serializable {
 
     ArrayList<String> bookmarks;
     ArrayList<String> title;
@@ -59,5 +58,8 @@ public class BookmarkActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+
+        outState.putSerializable("BOOKMARKS", bookmarks);
+        outState.putSerializable("TITLE", title);
     }
 }

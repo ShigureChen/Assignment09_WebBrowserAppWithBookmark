@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-public class BrowserControlFragment extends Fragment {
+import java.io.Serializable;
+
+public class BrowserControlFragment extends Fragment implements Serializable{
 
     private BrowserControlInterface browserActivity;
 
@@ -43,9 +45,9 @@ public class BrowserControlFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_browser_control, container, false);
-        final ImageButton newPageButton = view.findViewById(R.id.newPageButton);
-        final ImageButton savePageButton = view.findViewById(R.id.savePageButton);
-        final ImageButton bookmarkButton = view.findViewById(R.id.bookmarkButton);
+        ImageButton newPageButton = view.findViewById(R.id.newPageButton);
+        ImageButton savePageButton = view.findViewById(R.id.savePageButton);
+        ImageButton bookmarkButton = view.findViewById(R.id.bookmarkButton);
 
         newPageButton.setOnClickListener(new View.OnClickListener() {
             @Override

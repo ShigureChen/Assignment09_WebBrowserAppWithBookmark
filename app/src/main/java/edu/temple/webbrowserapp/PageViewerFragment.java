@@ -20,7 +20,7 @@ public class PageViewerFragment extends Fragment implements Serializable{
 
     private static final String URL_KEY = "url";
 
-    private WebView webView;
+    transient WebView webView;
     private PageViewerInterface browserActivity;
 
     private String url;
@@ -44,7 +44,7 @@ public class PageViewerFragment extends Fragment implements Serializable{
         if (context instanceof PageViewerInterface) {
             browserActivity = (PageViewerInterface) context;
         } else {
-            throw new RuntimeException("You must implement PageViewerInterface to attach this fragment");
+            throw new RuntimeException("Must implement PageViewerFragment interface");
         }
     }
 
@@ -61,9 +61,9 @@ public class PageViewerFragment extends Fragment implements Serializable{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View l = inflater.inflate(R.layout.fragment_page_viewer, container, false);
+        View view = inflater.inflate(R.layout.fragment_page_viewer, container, false);
 
-        webView = l.findViewById(R.id.webView);
+        webView = view.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient(){
             @Override
@@ -91,7 +91,7 @@ public class PageViewerFragment extends Fragment implements Serializable{
             }
         }
 
-        return l;
+        return view;
     }
 
     @Override
@@ -102,33 +102,18 @@ public class PageViewerFragment extends Fragment implements Serializable{
         webView.saveState(outState);
     }
 
-    /**
-     * Load provided URL in webview
-     * @param url to load
-     */
     public void go (String url) {
         webView.loadUrl(url);
     }
 
-    /**
-     * Go to previous page
-     */
     public void back () {
         webView.goBack();
     }
 
-    /**
-     * Go to next page
-     */
     public void forward () {
         webView.goForward();
     }
 
-    /**
-     * Get the title of the page currently being displayed,
-     * or the page's URL if title not available when requested
-     * @return the title of the page currently being viewed
-     */
     public String getTitle() {
         String title;
         if (webView != null) {
@@ -138,10 +123,6 @@ public class PageViewerFragment extends Fragment implements Serializable{
             return "Blank Page";
     }
 
-    /**
-     * Get the URL of the page currently being displayed
-     * @return the URL of the page currently being viewed
-     */
     public String getUrl() {
         if (webView != null)
             return webView.getUrl();
