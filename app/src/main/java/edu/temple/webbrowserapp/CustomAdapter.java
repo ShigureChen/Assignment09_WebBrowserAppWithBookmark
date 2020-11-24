@@ -46,6 +46,7 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         View view = convertView;
+        final int positionToRemove = position;
         if(convertView==null)
         {
             view = inflater.inflate(R.layout.list_row, null);
@@ -61,14 +62,14 @@ public class CustomAdapter extends BaseAdapter {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog();
+                dialog(positionToRemove);
             }
         });
 
         return view;
     }
 
-    private void dialog()
+    private void dialog(final int positionToRemove)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setMessage("Are you share you want to delete this bookmark?");
@@ -78,9 +79,10 @@ public class CustomAdapter extends BaseAdapter {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-
+                bookmarksList.remove(positionToRemove);
+                titleList.remove(positionToRemove);
+                notifyDataSetChanged();
             }
-
         });
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()  {
@@ -94,5 +96,10 @@ public class CustomAdapter extends BaseAdapter {
         });
 
         builder.create().show();
+    }
+
+    private void removeBookmark()
+    {
+
     }
 }

@@ -37,7 +37,8 @@ public class BookmarkActivity extends AppCompatActivity implements Serializable 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                    String url = bookmarks.get(i);
+                    launchNewBookMark(url);
                 }
             });
         }
@@ -53,6 +54,13 @@ public class BookmarkActivity extends AppCompatActivity implements Serializable 
                 finish();
             }
         });
+    }
+
+    public void launchNewBookMark(String url)
+    {
+        Intent intent = new Intent(this, BookmarkActivity.class);
+
+        startActivity(intent);
     }
 
     @Override

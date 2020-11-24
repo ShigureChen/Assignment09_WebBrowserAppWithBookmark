@@ -42,9 +42,14 @@ public class BrowserActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState != null)
+        {
             pages = (ArrayList) savedInstanceState.getSerializable(PAGES_KEY);
+        }
+
         else
+        {
             pages = new ArrayList<>();
+        }
 
         fm = getSupportFragmentManager();
 
@@ -55,8 +60,11 @@ public class BrowserActivity extends AppCompatActivity implements
         // If PageControlFragment already added (activity restarted) then hold reference
         // otherwise add new fragment. Only one instance of fragment is ever present
         if ((tmpFragment = fm.findFragmentById(R.id.page_control)) instanceof PageControlFragment)
+        {
             pageControlFragment = (PageControlFragment) tmpFragment;
-        else {
+        }
+        else
+        {
             pageControlFragment = new PageControlFragment();
             fm.beginTransaction()
                     .add(R.id.page_control, pageControlFragment)
@@ -66,8 +74,12 @@ public class BrowserActivity extends AppCompatActivity implements
         // If BrowserFragment already added (activity restarted) then hold reference
         // otherwise add new fragment. Only one instance of fragment is ever present
         if ((tmpFragment = fm.findFragmentById(R.id.browser_control)) instanceof BrowserControlFragment)
+        {
             browserControlFragment = (BrowserControlFragment) tmpFragment;
-        else {
+        }
+
+        else
+        {
             browserControlFragment = new BrowserControlFragment();
             fm.beginTransaction()
                     .add(R.id.browser_control, browserControlFragment)
