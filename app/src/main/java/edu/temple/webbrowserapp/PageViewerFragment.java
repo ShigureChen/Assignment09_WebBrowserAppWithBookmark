@@ -81,14 +81,23 @@ public class PageViewerFragment extends Fragment implements Serializable{
 
         // Restore WebView settings
         if (savedInstanceState != null)
+        {
             webView.restoreState(savedInstanceState);
-        else {
-            if (url != null) {
+        }
+        else
+        {
+            if (url != null)
+            {
                 webView.loadUrl(url);
-            } else {
+            }
+
+            else
+            {
                 browserActivity.updateUrl("");
             }
         }
+
+
 
         return view;
     }

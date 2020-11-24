@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -32,7 +34,9 @@ public class BrowserActivity extends AppCompatActivity implements
 
     ArrayList<PageViewerFragment> pages;
     ArrayList<String> bookmarks = new ArrayList<String>();
-    ArrayList<String> markTitle = new ArrayList<String>();;
+    ArrayList<String> markTitle = new ArrayList<String>();
+
+    int LAUNCH_SECOND_ACTIVITY = 1;
 
     boolean listMode;
 
@@ -40,6 +44,9 @@ public class BrowserActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        ArrayList<String> bookmarks = intent.getStringArrayListExtra("BOOKMARK");
+        ArrayList<String> markTitle = intent.getStringArrayListExtra("TITLE");
 
         if (savedInstanceState != null)
         {
@@ -137,6 +144,23 @@ public class BrowserActivity extends AppCompatActivity implements
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_SECOND_ACTIVITY)
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+               bookmarks = data.getStringArrayListExtra("BOOKMARK");
+               markTitle = data.getStringArrayListExtra("TITLE");
+            }
+            if (resultCode == Activity.RESULT_CANCELED)
+            {
+                //Write your code if there's no result
+            }
+        }
+    }
+    @Override
     public void go(String url) {
         if (pages.size() > 0)
             pagerFragment.go(url);
@@ -220,6 +244,6 @@ public class BrowserActivity extends AppCompatActivity implements
             intent.putExtra("Bookmarks", bookmarks);
             intent.putExtra("Title", markTitle);
         }
-        startActivity(intent);
+        startActivityForResult(intent, LAUNCH_SECOND_ACTIVITY);
     }
 }

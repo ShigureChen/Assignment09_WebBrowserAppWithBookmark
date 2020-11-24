@@ -3,6 +3,7 @@ package edu.temple.webbrowserapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -51,6 +52,11 @@ public class BookmarkActivity extends AppCompatActivity implements Serializable 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(BookmarkActivity.this, BrowserActivity.class);
+                intent.putExtra("BOOKMARK", bookmarks);
+                intent.putExtra("TITLE", title);
+
+                setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });

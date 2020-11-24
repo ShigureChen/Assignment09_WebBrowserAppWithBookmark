@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -81,6 +82,8 @@ public class CustomAdapter extends BaseAdapter {
                 dialog.dismiss();
                 bookmarksList.remove(positionToRemove);
                 titleList.remove(positionToRemove);
+                Toast toast = Toast.makeText(activity, "Bookmark removed", Toast.LENGTH_LONG);
+                toast.show();
                 notifyDataSetChanged();
             }
         });
@@ -90,16 +93,8 @@ public class CustomAdapter extends BaseAdapter {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-
             }
-
         });
-
         builder.create().show();
-    }
-
-    private void removeBookmark()
-    {
-
     }
 }
