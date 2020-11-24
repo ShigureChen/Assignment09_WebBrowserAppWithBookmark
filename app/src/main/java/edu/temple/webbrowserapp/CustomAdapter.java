@@ -70,15 +70,13 @@ public class CustomAdapter extends BaseAdapter {
 
     private void dialog()
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity.getBaseContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setMessage("Are you share you want to delete this bookmark?");
         builder.setTitle("Deleting Bookmark");
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener()
         {
             @Override
-
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.dismiss();
 
             }
@@ -88,9 +86,7 @@ public class CustomAdapter extends BaseAdapter {
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()  {
 
             @Override
-
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.dismiss();
 
             }
@@ -98,6 +94,5 @@ public class CustomAdapter extends BaseAdapter {
         });
 
         builder.create().show();
-
     }
 }

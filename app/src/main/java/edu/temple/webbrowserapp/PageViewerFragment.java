@@ -22,7 +22,6 @@ public class PageViewerFragment extends Fragment implements Serializable{
 
     transient WebView webView;
     private PageViewerInterface browserActivity;
-
     private String url;
 
 
